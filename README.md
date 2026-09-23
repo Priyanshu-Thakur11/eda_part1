@@ -1,0 +1,228 @@
+# Global Tech Layoffs — Exploratory Data Analysis
+
+## 📌 Project Status
+
+**Day 1 — Dataset Understanding & Initial Data Cleaning**
+
+This project is an ongoing Exploratory Data Analysis (EDA) project focused on understanding and analyzing global technology layoffs.
+
+The goal is to follow a complete real-world data analysis workflow — from raw data and data cleaning to exploratory analysis, visualization, and actionable insights.
+
+---
+
+## 🎯 Project Objective
+
+The primary objective of this project is to:
+
+* Understand the structure and characteristics of a real-world dataset
+* Identify and handle data-quality issues
+* Perform systematic data cleaning
+* Explore patterns and relationships within the data
+* Generate meaningful insights through exploratory data analysis
+* Create clear and informative visualizations
+* Present the final findings in a professional and reproducible manner
+
+---
+
+## 📊 Dataset
+
+The dataset contains information related to technology-company layoffs, including attributes such as:
+
+* Company
+* Location
+* Industry
+* Total employees laid off
+* Percentage of employees laid off
+* Date
+* Funding stage
+* Country
+* Funds raised
+
+The raw dataset is being preserved separately so that the complete data-cleaning process can be reproduced.
+
+---
+
+# 📅 Day 1 — Dataset Understanding & Initial Data Cleaning
+
+### 1. Dataset Inspection
+
+The first step was to understand the dataset before making any modifications.
+
+Performed:
+
+```python
+df.head()
+df.tail()
+df.shape
+df.columns
+df.info()
+```
+
+This helped identify:
+
+* Number of records
+* Number of features
+* Column names
+* Data types
+* Non-null values
+* Overall dataset structure
+
+---
+
+### 2. Descriptive Analysis
+
+Used Pandas descriptive statistics to understand the numerical variables:
+
+```python
+df.describe()
+```
+
+For categorical variables:
+
+```python
+df.describe(include="object")
+```
+
+Also checked the number of unique values:
+
+```python
+df.nunique()
+```
+
+This helped distinguish between numerical, categorical, and date-related variables.
+
+---
+
+### 3. Missing Value Analysis
+
+Missing values were investigated using:
+
+```python
+df.isnull().sum()
+```
+
+The percentage of missing values was also calculated:
+
+```python
+df.isnull().mean() * 100
+```
+
+Rather than removing missing values blindly, the columns were examined individually to understand whether the missing values should be removed, retained, or handled separately.
+
+---
+
+### 4. Duplicate Record Analysis
+
+Checked for duplicate records:
+
+```python
+df.duplicated().sum()
+```
+
+Duplicate records were investigated before deciding whether they represented actual duplicate observations.
+
+---
+
+### 5. Text Data Cleaning
+
+Basic text standardization was performed using:
+
+```python
+df["country"] = df["country"].str.strip()
+```
+
+This removes unnecessary whitespace from the beginning and end of text values and helps prevent the same category from being treated as different values because of formatting differences.
+
+---
+
+### 6. Date & Data-Type Handling
+
+Date-related columns were examined and converted to appropriate datetime formats where required:
+
+```python
+df["date"] = pd.to_datetime(df["date"])
+```
+
+This will allow further analysis based on:
+
+* Year
+* Month
+* Quarter
+* Time-based trends
+
+---
+
+### 7. Initial Outlier Analysis
+
+Started investigating potential outliers in the `total_laid_off` variable using the Interquartile Range (IQR) method.
+
+```python
+Q1 = df["total_laid_off"].quantile(0.25)
+Q3 = df["total_laid_off"].quantile(0.75)
+
+IQR = Q3 - Q1
+
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+```
+
+Potential outliers were identified for further investigation rather than being automatically removed.
+
+---
+
+# 🛠️ Technologies Used
+
+* **Python**
+* **Pandas**
+* **NumPy**
+* **Jupyter Notebook**
+
+---
+
+
+## 📈 Planned Analysis
+
+The final project will investigate questions such as:
+
+1. How have technology layoffs changed over time?
+2. Which industries experienced the highest number of layoffs?
+3. Which countries were most affected?
+4. Which companies recorded the largest layoffs?
+5. How do layoffs vary across funding stages?
+6. Are there noticeable trends in layoff percentages?
+7. What relationships exist between funding and layoffs?
+8. What significant patterns can be identified from the cleaned dataset?
+
+---
+
+## 📁 Project Structure
+
+```text
+Global-Tech-Layoffs-EDA/
+│
+├── data/
+│   ├── raw/
+│   │   └── layoffs.csv
+│   │
+│   └── cleaned/
+│       └── layoffs_cleaned.csv
+│
+├── notebooks/
+│   └── Global_Tech_Layoffs_EDA.ipynb
+│
+├── images/
+│
+├── README.md
+│
+└── requirements.txt
+```
+
+---
+
+
+
+---
+
+## 👨‍💻 Learning Objective
+
+This project is being developed as a hands-on learning exercise to strengthen practical skills in **Python, Pandas, data cleaning, exploratory data analysis, statistics, and data visualization** while following a reproducible data-analysis workflow.
