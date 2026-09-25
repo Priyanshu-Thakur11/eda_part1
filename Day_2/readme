@@ -1,0 +1,124 @@
+# Day 2 — Data Cleaning & Validation 🧹
+
+As part of my Data Analysis learning journey, Day 2 focused on **Data Cleaning and Validation** using the Tech Layoffs dataset.
+
+The main objective was to transform the initially explored dataset into a cleaner and more reliable dataset that can be used for further Exploratory Data Analysis (EDA) and visualization.
+
+## 📌 Dataset
+
+**Dataset:** Tech Layoffs Dataset
+
+The dataset contains information about layoffs across different companies, industries, countries, dates, funding stages, and the number/percentage of employees laid off.
+
+## 🎯 Objectives
+
+The main objectives of Day 2 were:
+
+- Validate and correct data types
+- Convert date columns into proper datetime format
+- Extract useful information from date columns
+- Standardize categorical data
+- Analyze missing values
+- Handle missing-value information appropriately
+- Validate numerical columns
+- Identify and investigate potential outliers
+- Perform logical consistency checks
+- Perform a final data quality check
+- Export the cleaned dataset for further analysis
+
+## 🔧 Tools & Technologies
+
+- Python
+- Pandas
+- NumPy
+- Jupyter Notebook
+
+## 🧹 Data Cleaning Process
+
+### 1. Data Type Validation
+
+Reviewed the existing data types and identified columns that required conversion for proper analysis.
+
+### 2. Date Conversion
+
+Converted date-related columns into appropriate datetime formats using Pandas.
+
+This allows the dataset to be analyzed based on:
+
+- Year
+- Month
+- Month Name
+- Year-Month
+
+### 3. Feature Creation
+
+Created additional date-based features to support future time-series analysis.
+
+Examples:
+
+- `year`
+- `month`
+- `month_name`
+- `year_month`
+
+### 4. Categorical Data Standardization
+
+Reviewed categorical columns and removed unnecessary leading and trailing spaces to maintain consistency.
+
+Columns included:
+
+- Company
+- Location
+- Industry
+- Stage
+- Country
+
+### 5. Missing Value Analysis
+
+Analyzed missing values across the dataset and calculated both:
+
+- Missing value count
+- Missing value percentage
+
+Important columns with missing values included:
+
+- `total_laid_off`
+- `percentage_laid_off`
+- `funds_raised`
+
+Rather than blindly replacing missing values, the missing information was investigated based on its meaning and relevance to future analysis.
+
+### 6. Numerical Data Validation
+
+Checked numerical columns for:
+
+- Negative values
+- Unexpected values
+- Minimum and maximum values
+- Statistical ranges
+
+### 7. Outlier Investigation
+
+Used the **Interquartile Range (IQR)** method to identify potential outliers in the `total_laid_off` column.
+
+Potential outliers were investigated rather than automatically removed, since an extreme value may represent a genuine real-world observation.
+
+### 8. Logical Consistency Checks
+
+Performed validation checks to identify values that may not make logical sense, including:
+
+- Negative layoffs
+- Negative funding values
+- Invalid layoff percentages
+- Invalid or unexpected dates
+
+### 9. Final Data Quality Check
+
+Performed a final review of:
+
+- Dataset shape
+- Missing values
+- Duplicate records
+- Data types
+- Numerical values
+
